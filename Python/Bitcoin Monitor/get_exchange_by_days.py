@@ -3,31 +3,27 @@ import json
 from urllib import response
 import conv_date
 
-def get_currency_exchange(currency_code, num_days):
-    # currency_code = "BTC"
-    # num_days = 5
+def get_currency_exchange(mainWindow, currency_code, num_days):
     url_currency_brl = f"http://economia.awesomeapi.com.br/json/daily/{currency_code}-BRL/{num_days}"
-
     response = requests.get(url_currency_brl)
-    # print(url_currency_brl)
-
-    # print(response)
     response_json = (response.json())
-    # print(response_json)
 
     for response_item in range(num_days):
-        # print(response_item)
+
         try:
-            print(f"Compra: BRL->{currency_code}: " + str(response_json[response_item].get('bid')))
-            print(f"Venda: BRL->{currency_code}: " + str(response_json[response_item].get('ask')))
-            print(f"Variação: BRL->{currency_code}: " + str(response_json[response_item].get('varBid')))
-            print(f"Porcentagem de Variação: BRL->{currency_code}: " + str(response_json[response_item].get('pctChange')))
-            print(f"Máximo: BRL->{currency_code}: " + str(response_json[response_item].get('high')))
-            print(f"Mínimo: BRL->{currency_code}: " + str(response_json[response_item].get('low')))
-            date = conv_date.conv_timestamp_to_date(int(response_json[response_item].get('timestamp')))
-            print(f"Data: {date}")
+        
+            mainWindow.insert_text("-----------| BRL ---> {} |------------\n".format(currency_code))
+            mainWindow.insert_text("Compra: _____________________ {}\n".format(str(response_json[response_item].get('bid'))))
+            mainWindow.insert_text("Venda: ______________________ {}\n".format(str(response_json[response_item].get('ask'))))
+            mainWindow.insert_text("Variação: ___________________ {}\n".format(str(response_json[response_item].get('varBid'))))
+            mainWindow.insert_text("Variação (%): _______________ {}\n".format(str(response_json[response_item].get('pctChange'))))
+            mainWindow.insert_text("Máximo: _____________________ {}\n".format(str(response_json[response_item].get('high'))))
+            mainWindow.insert_text("Mínimo: _____________________ {}\n".format(str(response_json[response_item].get('low'))))
+            mainWindow.insert_text("-----| Date: {} |-----\n\n".format(conv_date.conv_timestamp_to_date(int(response_json[response_item].get('timestamp')))))
+
         except:
             print("Erro genérico")
+    
 
 # get_currency_exchange()
 #    Legendas
