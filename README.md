@@ -1,6 +1,4 @@
 # Criptocoin monitor
-It's an simple GUI made in python for the early stage of Bitcoin Monitor from Pietro.
-
-Forked code from Pietro's repository
+Simples interface para a programa de monitoramento de criptomoedas do repositório de Pietro Mauricio.
 
 Original: https://github.com/Pietromauricio/Portfolio
